@@ -1,1 +1,1 @@
-# pluggin_Wordpress_by_hostgator
+# Aprendendo a Criar um pluggin pela hostgator
