@@ -1,6 +1,8 @@
 version: '3.3'
 
 services:
+
+
   wordpress:
    build: .
    restart: always
@@ -34,6 +36,6 @@ services:
         - 8888:8080
 
 volumes:
+   db:
    wp_uploads:
    wp_themes:
-   db:
