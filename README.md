@@ -1,5 +1,5 @@
 # Aprendendo a Criar um pluggin pela hostgator
- Criando um pluggin para o e-commerce, com PHP, Docker e o Wordpress
+ Criando um pluggin para o wordpress com PHP, Docker e o Wordpress
 
 # Instalando e Configurando
 - Baixe e instale a tecnologia Php de acordo com seu sistema operacional.
