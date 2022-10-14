@@ -5,7 +5,7 @@
 - Baixe e instale a tecnologia Php de acordo com seu sistema operacional.
 - Baixe e instale uma ide de sua preferência (Recomendo PHPStorm) 
 - Baixe e instale o docker para utilização dos containers
-
+modifiquei
 # Developing
 ````bash
 git clone https://github.com/Isaac-Sousa/plugginWordpress.git
