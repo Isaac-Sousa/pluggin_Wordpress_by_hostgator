@@ -137,7 +137,7 @@ if (! class_exists('youtube_recommendation_admin')){
 		 <input type="number" id="cache_expiration" min="1" name="yt_rec['cache_expiration']" value="<?php echo $value ?>" class="small_text" />
           <?php echo __('hours is the expiration time for cached data','recommend'); ?>
          <p class="description"<a href="<?php echo $jason_url ?>" target="_blank"><?php echo __('Test here', 'recommend'); ?></a>
-
+         <?php
 	   }
 
 
