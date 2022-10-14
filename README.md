@@ -9,6 +9,6 @@
 # Developing
 ````bash
 git clone https://github.com/Isaac-Sousa/plugginWordpress.git
-cd pluggin_Wordpress_by_hostgator/
+cd plugginWordpress/
 php -S 127.0.0.1:8000
 ````
