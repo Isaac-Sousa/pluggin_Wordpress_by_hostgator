@@ -82,10 +82,42 @@ if (! class_exists('youtube_recommendation_admin')){
 			null,
 			'yt_rec_admin'
 		 );
-
-
-
+		 add_settings_field(
+			'show_position',
+			__('Show in Posts', 'recommend'),
+			array($this,'show_position_callback'),
+			'yt_rec_admin',
+			'settings_section_id_2'
+		 );
+		 add_settings_field(
+			'layout',
+			__('Layout','recommend'),
+			array($this, 'show_layout_callback'),
+			'yt_rec_admin',
+			'settings_section_id_2'
+		 );
+		 add_settings_field(
+			'limit',
+			__('Videos in list', 'recomend'),
+			array($this, 'limit_callback'),
+			'yt_rec_admin',
+			'settings_section_id_2'
+		 );
+		 add_settings_section(
+			 'settings_section_id_3',
+			 __('Customize Style', 'recommend'),
+			 null,
+			 'yt_rec_admin'
+		 );
+		 add_settings_field(
+			 'custom_css',
+			 __('Your CSS','recommend'),
+			 array($this, 'custom_css_callback'),
+			 'yt_rec_admin',
+			 'settings_section_id_3'
+		 );
 		}
+
 
 
 
