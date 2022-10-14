@@ -118,7 +118,14 @@ if (! class_exists('youtube_recommendation_admin')){
 		 );
 		}
 
-
+		public function channel_id_callback(){
+			$value = isset($this->options['channel_id']) ? esc_attr($this->options['channel_id']): '';
+			?>
+            <input type="text" id="channel_id" name="yt_rec['channel_id']" value="<?php echo $value ?>" class="regular_text" />
+              <p class="description"><?php echo __('sample','recommend') ?>: UCFoIQaiodwoiajdabdua</p>
+			  <p class="description"><a href="https://support.google.com/youtube/answer/3250431" target="_blank"><?php echo __('Find here your channel Id' , 'my-youtube-recommendation') ?></a></p>
+			<?php
+		}
 
 
 
