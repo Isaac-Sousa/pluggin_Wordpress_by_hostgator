@@ -71,5 +71,5 @@ if(is_admin()) {
 
 add_filter('the_content', 'thanks');
 function thanks ($content){
-	return $content.'Obrigado por me instalar!';
+	return $content.'Em progresso!';
 }
