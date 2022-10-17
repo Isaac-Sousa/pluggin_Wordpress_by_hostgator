@@ -1,7 +1,7 @@
 <?php
-if (! class_exists('youtube_recommendation_admin')){
+if (! class_exists('Youtube_Recommendation_Admin')){
 
-	class youtube_recommendation_admin {
+	class Youtube_Recommendation_Admin {
 		private $options;
 		private $plugin_basename;
 		private $plugin_slug;
@@ -27,18 +27,27 @@ if (! class_exists('youtube_recommendation_admin')){
 		public function add_plugin_page() {
 			add_options_page(
 			  __('Settings','recommend'),
-			  __('Recommend','recommend'),
-			  'manege_options',
+			  __('Youtube Recommendation','recommend'),
+			  'manage_options',
 			  $this->plugin_slug,
 			  array ($this, 'create_admin_page')
 			);
+		}
+
+		/*
+	     * add settings link
+	     */
+		public function add_settings_link( $links ) {
+			$settings_link = '<a href="options-general.php?page='.$this->plugin_slug.'">' .__( 'Settings' ) . '</a>';
+			array_unshift( $links, $settings_link );
+			return $links;
 		}
 
 		//criar pagina do addministrador
 		public function create_admin_page(){
 		?>
          <div class="wrap">
-	         <h1><?php echo __('Recommend','recommend') ?></h1>
+	         <h1><?php echo __('Recommendation','recommend') ?></h1>
 	         <form method="post" action="options.php">
 		         <?php
 		         settings_field('yt_rec_options');
@@ -51,8 +60,12 @@ if (! class_exists('youtube_recommendation_admin')){
 		}
 
 
+     /*
+	  * page init
+	  */
+
 		public function page_init(){
-		 register_settings(
+		 register_setting(
 			'yt_rec_options',
 			'yt_rec',
 			 array($this, 'sanitize')
@@ -221,33 +234,21 @@ if (! class_exists('youtube_recommendation_admin')){
 
         /* page footer ends
          *
-         *
-         * show notices starts
-         */
-        public function show_notices() {
-            $value = isset($this->options['channel_id']) ? esc_attr($this->options['channel_id']) : '';
-            if($value= ''){
-                ?>
-                 <div class="error notice">
-                 <?php echo $channel_id  ?>
-                     <p><strong><?php echo __('Recommendation','recommend'); ?></strong></p>
-                     <p><?php echo __('Fill with your Youtube channel ID','recommend') ?></p>
-                 </div>
-                <?php
-            }
-        }
-
-        /* show notice ends
-         *
-         *
-         * add settings link starts
+         * show notice starts
          */
 
-        public function add_settings_link($links){
-          $settings_link = '<a href="options-general.php?pahe=' . $this->plugin_slug . '">' . __('Settings', 'recommend') . '</a>';
-          array_unshift($links,$settings_link);
-          return $links;
-    }
+		public function show_notices() {
+			$value = isset( $this->options['channel_id'] ) ? esc_attr( $this->options['channel_id'] ) : '';
+			if ($value == ''){
+				?>
+                <div class="error notice">
+					<?php echo $channel_id ?>
+                    <p><strong><?php echo __( 'Youtube Recommendation', 'recommend' ); ?></strong></p>
+                    <p><?php echo __( 'Fill with your Youtube channel ID', 'recommend' ); ?></p>
+                </div>
+				<?php
+			}
+		}
 
 
 
