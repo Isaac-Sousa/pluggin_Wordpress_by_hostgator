@@ -61,15 +61,16 @@ require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_json.php';
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_shortcode.php';
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_widget.php';
 
-if(is_admin()) {
+if(is_admin())
 	require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_admin.php';
-}
+    $yt_yt_rec_admin = NEW youtube_recommendation_admin(
+    RECOMMEND_BASENAME,
+    RECOMMEND_PLUGIN_SLUG,
+    RECOMMEND_JSON_FILENAME,
+    RECOMMEND_VERSION
+    );
 
-
-
-
-
-add_filter('the_content', 'thanks');
-function thanks ($content){
-	return $content.'Em progresso!';
-}
+//add_filter('the_content', 'thanks');
+//function thanks ($content){
+//	return $content.'start again';
+//}

@@ -126,24 +126,128 @@ if (! class_exists('youtube_recommendation_admin')){
 			?>
             <input type="text" id="channel_id" name="yt_rec['channel_id']" value="<?php echo $value ?>" class="regular_text" />
               <p class="description"><?php echo __('sample','recommend') ?>: UCFoIQaiodwoiajdabdua</p>
-			  <p class="description"><a href="https://support.google.com/youtube/answer/3250431" target="_blank"><?php echo __('Find here your channel Id' , 'my-youtube-recommendation') ?></a></p>
+			  <p class="description"><a href="https://support.google.com/youtube/answer/3250431" target="_blank"><?php echo __('Find here your channel Id' , 'recommend') ?></a></p>
 			<?php
 		}
-	   public function cache_expiration_callback(){
-		$upload_dir=wp_upload_dir();
-		$jason_url= $upload_dir['baseurl'] .'/'.$this->plugin_slug.'/'.$this->json_filename;
-		$value = isset($this->options['cache_expiration']) ? esc_attr($this->options['cache_expiration']): '1';
-		?>
-		 <input type="number" id="cache_expiration" min="1" name="yt_rec['cache_expiration']" value="<?php echo $value ?>" class="small_text" />
-          <?php echo __('hours is the expiration time for cached data','recommend'); ?>
-         <p class="description"<a href="<?php echo $jason_url ?>" target="_blank"><?php echo __('Test here', 'recommend'); ?></a>
-         <?php
+	    public function cache_expiration_callback(){
+		    $upload_dir=wp_upload_dir();
+		    $jason_url= $upload_dir['baseurl'] .'/'.$this->plugin_slug.'/'.$this->json_filename;
+            $value = isset($this->options['cache_expiration']) ? esc_attr($this->options['cache_expiration']): '1';
+		    ?>
+		    <input type="number" id="cache_expiration" min="1" name="yt_rec['cache_expiration']" value="<?php echo $value ?>" class="small_text" />
+              <?php echo __('hours is the expiration time for cached data','recommend'); ?>
+              <p class="description"<a href="<?php echo $jason_url ?>" target="_blank"><?php echo __('Test here', 'recommend'); ?></a>
+            <?php
 	   }
+		public function show_position_callback() {
+			$value = isset( $this->options['show_position'] ) ? esc_attr( $this->options['show_position'] ) : '';
+			?>
+            <fieldset>
+                <legend class="screen-reader-text"><span><?php echo __('On posts show videos in position:' , 'recommend') ?></span></legend>
+                <label><input type="radio" name="my_yt_rec[show_position]" value=""<?php echo ( $value == '' ) ? 'checked="checked"' : '' ?>> <?php echo __('Disable' , 'recommend') ?></label><br>
+                <label><input type="radio" name="my_yt_rec[show_position]" value="after"<?php echo ( $value == 'after' ) ? 'checked="checked"' : '' ?>> <?php echo __('After' , 'recommend') ?></label><br>
+                <label><input type="radio" name="my_yt_rec[show_position]" value="before"<?php echo ( $value == 'before' ) ? 'checked="checked"' : '' ?>> <?php echo __('Before' , 'recommend') ?></label>
+            </fieldset>
+			<?php
+		}
+
+		public function show_layout_callback() {
+			$value = isset( $this->options['layout'] ) ? esc_attr( $this->options['layout'] ) : 'grid';
+			?>
+            <select name="my_yt_rec[layout]">
+                <option value="grid"<?php echo ( $value == 'grid' ) ? 'selected="selected"' : '' ?>><?php echo __('Grid' , 'recommend') ?></option>
+                <option value="list"<?php echo ( $value == 'list' ) ? 'selected="selected"' : '' ?>><?php echo __('List' , 'recommend') ?></option>
+            </select>
+			<?php
+		}
+
+		public function limit_callback() {
+			$value = isset( $this->options['limit'] ) ? esc_attr( $this->options['limit'] ) : '3';
+			?>
+            <input type="number" id="limit" min="1" max="15" name="my_yt_rec[limit]" value="<?php echo $value ?>" class="small-text" />
+            <p class="description"><?php echo __('Max' , 'recommend') ?> 15</p>
+			<?php
+		}
+
+		public function custom_css_callback() {
+			$value = isset( $this->options['custom_css'] ) ? esc_attr( $this->options['custom_css'] ) : '';
+			?>
+            <textarea id="custom_css" name="my_yt_rec[custom_css]" rows="10" cols="50" class="large-text code"><?php echo $value ?></textarea>
+			<?php
+		}
 
 
 
+        /*
+         * Callbacks ends
+         *
+         *
+         * sanitize starts
+         */
+        public function sanitize($input) {
+            $new_input = array();
+            if(isset($input['channel_id'] ) )
+               $new_input['channel_id'] = sanitize_text_field($input['channel_id']);
 
+	        if(isset($input['cache_expiration'] ) )
+		        $new_input['cache_expiration'] = absint($input['cache_expiration']);
 
+	        if(isset($input['show_position'] ) )
+		        $new_input['show_position'] = sanitize_text_field($input['show_position']);
+
+	        if(isset($input['layout'] ) )
+		        $new_input['layout'] = sanitize_text_field($input['layout']);
+
+	        if(isset($input['limit'] ) )
+		        $new_input['limit'] = absint($input['limit']);
+
+	        if(isset($input['custom_css'] ) )
+		        $new_input['custom_css'] = sanitize_text_field($input['custom_css']);
+
+            return $new_input;
+
+        }
+
+       /*
+        *  Sanitize ends
+        *
+        *
+        * page footer starts
+        */
+
+        public function page_footer(){
+          return __('Plugin Version','recommend') .' '.  $this->plugin_version;
+        }
+
+        /* page footer ends
+         *
+         *
+         * show notices starts
+         */
+        public function show_notices() {
+            $value = isset($this->options['channel_id']) ? esc_attr($this->options['channel_id']) : '';
+            if($value= ''){
+                ?>
+                 <div class="error notice">
+                 <?php echo $channel_id  ?>
+                     <p><strong><?php echo __('Recommendation','recommend'); ?></strong></p>
+                     <p><?php echo __('Fill with your Youtube channel ID','recommend') ?></p>
+                 </div>
+                <?php
+            }
+        }
+
+        /* show notice ends
+         *
+         *
+         * add settings link starts
+         */
+
+        public function add_settings_link($links){
+          $settings_link = '<a href="options-general.php?pahe=' . $this->plugin_slug . '">' . __('Settings', 'recommend') . '</a>';
+          array_unshift($links,$settings_link);
+          return $links;
+    }
 
 
 
