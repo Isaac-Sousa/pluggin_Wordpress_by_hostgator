@@ -17,12 +17,38 @@
   </style>
 </head>
 <body>
-<div class="container" id="videos">Loading...</div>
+<div class="container" id="videos">carregando</div>
+
+
+<div class="container" id="widget">loading</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <script src="js/scripts.js"></script>
 <script>
-     YoutubeRecommendation.loadVideos()
+    let yt_rec_ajax = {
+        url: "https://localhost:63342/pluggin_Wordpress_by_hostgator/sample/videos.json",
+    };
+    YoutubeRecommendation.listCallbacks.push({
+        containerId: "videos",
+        Layout: "grid",
+        limit: "3",
+        lang: "pt_BR",
+        callback:YoutubeRecommendation.buildList,
+    });
+    YoutubeRecommendation.listCallbacks.push({
+        containerId: "widget",
+        Layout: "grid",
+        limit: "2",
+        lang: "en_US",
+        callback:YoutubeRecommendation.buildList,
+    });
+
+    YoutubeRecommendation.loadVideos(yt_rec_ajax.url).then ((value)=>{
+        YoutubeRecommendation.listCallbacks.forEach( (item)=>{
+            item.callback (value, item.containerId , item.Layout, item.limit, item.lang);
+        } )
+    });
+
 </script>
 
 
