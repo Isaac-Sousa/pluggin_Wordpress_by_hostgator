@@ -47,11 +47,11 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 		public function create_admin_page(){
 		?>
          <div class="wrap">
-	         <h1><?php echo __('Recommendation','recommend') ?></h1>
+	         <h1><?php echo __('Recommendation','recommend'); ?></h1>
 	         <form method="post" action="options.php">
 		         <?php
-		         settings_field('yt_rec_options');
-				 do_settings_selection('yt_rec_admin');
+		         settings_fields('yt_rec_options');
+				 do_settings_sections('yt-rec-admin');
 				 submit_button();
 		         ?>
 	         </form>

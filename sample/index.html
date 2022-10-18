@@ -26,7 +26,7 @@
 <script src="js/scripts.js"></script>
 <script>
     let yt_rec_ajax = {
-        url: "https://localhost:63342/pluggin_Wordpress_by_hostgator/sample/videos.json",
+        url: "https: //localhost:63342/sample/videos.json"
     };
     YoutubeRecommendation.listCallbacks.push({
         containerId: "videos",
@@ -38,15 +38,15 @@
     YoutubeRecommendation.listCallbacks.push({
         containerId: "widget",
         Layout: "grid",
-        limit: "2",
+        limit: "1",
         lang: "en_US",
         callback:YoutubeRecommendation.buildList,
     });
 
-    YoutubeRecommendation.loadVideos(yt_rec_ajax.url).then ((value)=>{
-        YoutubeRecommendation.listCallbacks.forEach( (item)=>{
-            item.callback (value, item.containerId , item.Layout, item.limit, item.lang);
-        } )
+    YoutubeRecommendation.loadVideos(yt_rec_ajax.url).then((value)=>{
+        YoutubeRecommendation.listCallbacks.forEach((item)=>{
+            item.callback(value, item.containerId , item.layout, item.limit, item.lang);
+        })
     });
 
 </script>
