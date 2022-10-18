@@ -80,5 +80,5 @@ if(is_admin()){
     // mensagem pra verificar se está funcionadp
 add_filter('the_content', 'thanks');
 function thanks ($content){
-	return $content.'start again';
+	return $content.'Ta dando certo, yupiii';
 }
