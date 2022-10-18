@@ -19,7 +19,7 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 	   add_action('admin_init', array ($this, 'page_init'));
 	   add_action('admin_footer_text', array ($this, 'page_footer'));
 	   add_action('admin_notices', array ($this, 'show_notices'));
-	   add_filter('puglin_action_links' .$this->plugin_basename, array($this, 'add_ettings_link'));
+	   add_filter( "plugin_action_links_" . $this->plugin_basename, array( $this, 'add_settings_link' ) );
     }
 
 
@@ -38,7 +38,7 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 	     * add settings link
 	     */
 		public function add_settings_link( $links ) {
-			$settings_link = '<a href="options-general.php?page='.$this->plugin_slug.'">' .__( 'Settings' ) . '</a>';
+			$settings_link = '<a href="options-general.php?page='. $this->plugin_slug .'">' . __( 'Settings' ) . '</a>';
 			array_unshift( $links, $settings_link );
 			return $links;
 		}
@@ -51,7 +51,7 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 	         <form method="post" action="options.php">
 		         <?php
 		         settings_fields('yt_rec_options');
-				 do_settings_sections('yt-rec-admin');
+				 do_settings_sections('yt_rec_admin');
 				 submit_button();
 		         ?>
 	         </form>
