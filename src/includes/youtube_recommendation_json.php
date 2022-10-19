@@ -152,7 +152,7 @@ $my = new Youtube_Recommendation_json('UCFuIUoyHB12qpYa8Jpxoxow');
 $json = $my->from_yt_feed();
 var_dump($json);
 
-//TODO avatar -Not working, returning NULL value!
+// TODO avatar -Not working, returning NULL value!
 //$my = new Youtube_Recommendation_json('UCFuIUoyHB12qpYa8Jpxoxow');
 //$avatar = $my->get_channel_avatar();
 //var_dump($avatar);
