@@ -6,7 +6,7 @@ if (! class_exists('Youtube_Recommendation_json')) {
      public function __construct($channel_id){
         $this->$channel_id = $channel_id;
      }
-
+     //private
      public function from_yt_feed(){
 		  $channel_id = $this->channel_id;
 		  //UC9_-53kycytS_3Jmcwj052A id do canal do p4ulo para teste
@@ -26,7 +26,7 @@ if (! class_exists('Youtube_Recommendation_json')) {
 		  foreach ($content['entry'] as $index => $item){
 		  if ($count == 0) {
 			  $videos['channel']                  = $item['author'];
-			  $videos['channel']['avatar']        = '';
+			  $videos['channel']['avatar']        = $this->get_channel_avatar();
 		   }
 		  $yt_video_id = $item['yt_videoId'];
 		  $videos['videos'][$count]['id']            = $yt_video_id;
@@ -42,6 +42,7 @@ if (! class_exists('Youtube_Recommendation_json')) {
 		  }
 		  return json_encode($videos);
      }
+	 //private
      public function get_channel_avatar(){
 		 $channel_id                      = $this->channel_id;
 		 $channel_url                     ="https://m.youtube.com/channel/{$channel_id}";
