@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.my-yt-rec,
-.my-yt-rec-list {
-    --my-yt-rec-max-item-width: 390px;
+.yt-rec,
+.yt-rec-list {
+    --yt-rec-max-item-width: 390px;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -17,28 +17,28 @@
     letter-spacing: 0.02em;
 }
 
-.my-yt-rec-list {
+.yt-rec-list {
     flex-wrap: wrap;
     align-items: flex-start;
 }
 
-.my-yt-rec-item {
+.yt-rec-item {
     flex: 45% 45%;
-    max-width: var(--my-yt-rec-max-item-width);
+    max-width: var(--yt-rec-max-item-width);
     min-width: 319px;
     position: relative;
     padding: 10px;
 }
 
-.my-yt-rec-list .my-yt-rec-item {
+.yt-rec-list .yt-rec-item {
     flex-direction: row;
     min-width: 100%;
     display: flex;
     align-items: left;
 }
 
-.my-yt-rec a,
-.my-yt-rec-list a {
+.yt-rec a,
+.yt-rec-list a {
     color: #030303;
     text-decoration: none !important;
     cursor: pointer;
@@ -49,19 +49,19 @@
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
-    .my-yt-rec,
-    .my-yt-rec-item {
+    .yt-rec,
+    .yt-rec-item {
         flex-direction: row;
         flex-wrap: wrap;
     }
 
-    .my-yt-rec-item {
+    .yt-rec-item {
         flex: 0 35%;
         max-width: 35%;
     }
 
-    .my-yt-rec-list .my-yt-rec,
-    .my-yt-rec-list .my-yt-rec-item {
+    .yt-rec-list .yt-rec,
+    .yt-rec-list .yt-rec-item {
         flex-wrap: nowrap;
     }
 }
@@ -72,48 +72,48 @@
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {}
 
-.my-yt-rec-meta {
+.yt-rec-meta {
     display: flex;
     align-items: left;
     padding-right: 24px;
 }
 
-.my-yt-rec-list .my-yt-rec-meta {
+.yt-rec-list .yt-rec-meta {
     padding-left: 12px;
 }
 
-.my-yt-rec-meta-data {
+.yt-rec-meta-data {
     white-space: normal;
     text-overflow: ellipsis;
 }
 
-.my-yt-rec-meta-data h3 {
+.yt-rec-meta-data h3 {
     font-size: 1.17em;
     font-weight: bold;
     margin-bottom: 4px;
 }
 
-.my-yt-rec-thumbnail {
+.yt-rec-thumbnail {
     transition: opacity 0.5s;
     width: 100%;
     min-width: 319px;
-    max-width: var(--my-yt-rec-max-item-width);
+    max-width: var(--yt-rec-max-item-width);
     top: 0;
     right: 0;
     bottom: 10px;
     left: 0;
 }
 
-.my-yt-rec-list .my-yt-rec-thumbnail {
+.yt-rec-list .yt-rec-thumbnail {
     min-width: 150px;
     max-width: 150px;
 }
 
-.my-yt-rec-channel {
+.yt-rec-channel {
     overflow: hidden;
 }
 
-.my-yt-rec-title {
+.yt-rec-title {
     /* font-family: "Roboto", Arial, sans-serif; */
     white-space: normal;
     overflow: hidden;
@@ -129,11 +129,11 @@
     letter-spacing: 0.03em;
 }
 
-.my-yt-rec-list .my-yt-rec-title {
+.yt-rec-list .yt-rec-title {
     margin-top: 4px;
 }
 
-.my-yt-rec-avatar-box {
+.yt-rec-avatar-box {
     flex: content;
     max-width: 36px;
     min-width: 319px;
@@ -141,7 +141,7 @@
     padding: 10px;
 }
 
-.my-yt-rec-avatar {
+.yt-rec-avatar {
     border-radius: 50%;
     width: 36px;
     height: 36px;
@@ -149,11 +149,11 @@
     margin-right: 12px;
 }
 
-.my-yt-rec-list .my-yt-rec-avatar {
+.yt-rec-list .yt-rec-avatar {
     display: none;
 }
 
-.my-yt-rec-meta-line {
+.yt-rec-meta-line {
     margin-top: 2px;
 }
 

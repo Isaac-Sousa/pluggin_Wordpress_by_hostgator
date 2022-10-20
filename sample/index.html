@@ -18,22 +18,18 @@
 </head>
 <body>
 <div class="container" id="videos">Não funciona</div>
-
-
 <div class="container" id="widget">Not working</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <script src="js/scripts.js"></script>
 <script>
     let yt_rec_ajax = {
-          //ignore
-       /* if you are in windows user 5500 else 63342 used in mac */
-        url: "https://localhost:5500/sample/videos.json",
+        url: "http://localhost:5500/sample/videos.json",
     };
     YoutubeRecommendation.listCallbacks.push({
         containerId: "videos",
-        layout: "grid",
-        limit: "3",
+        layout: "list",
+        limit: "5",
         lang: "pt_BR",
         callback:YoutubeRecommendation.buildList,
     });
@@ -45,7 +41,7 @@
         callback:YoutubeRecommendation.buildList,
     });
 
-    YoutubeRecommendation.loadVideos(yt_rec_ajax.url).then((value)=>{
+    YoutubeRecommendation.loadVideos(yt_rec_ajax.url).then(( value )=>{ console.log(value);
         YoutubeRecommendation.listCallbacks.forEach((item)=>{
             item.callback(value, item.containerId , item.layout, item.limit, item.lang);
         })

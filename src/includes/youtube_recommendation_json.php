@@ -97,7 +97,7 @@ if (! class_exists('Youtube_Recommendation_json')) {
 		  foreach ($content['entry'] as $index => $item){
 		  if ($count == 0) {
 			  $videos['channel']                  = $item['author'];
-			  $videos['channel']['avatar']        = $this->get_channel_avatar();
+			  $videos['channel']['avatar']        = ' ';
 		   }
 		  $yt_video_id = $item['yt_videoId'];
 		  $videos['videos'][$count]['id']            = $yt_video_id;
@@ -114,7 +114,7 @@ if (! class_exists('Youtube_Recommendation_json')) {
 		  return json_encode($videos);
      }
 	 //private
-     public function get_channel_avatar(){
+     private function get_channel_avatar(){
 		 $channel_id                      = $this->channel_id;
 		 $channel_url                     ="https://m.youtube.com/channel/{$channel_id}";
 		 $response                        =wp_remote_get($channel_url);
@@ -137,17 +137,6 @@ if (! class_exists('Youtube_Recommendation_json')) {
 
 	}
 }
-// TODO - uploads Not working
-$my = new Youtube_Recommendation_json(
-'UCFuIUoyHB12qpYa8Jpxoxow',
-1,
-RECOMMEND_PLUGIN_SLUG,
-RECOMMEND_JSON_FILENAME
-);
-
-
-
-// TODO json - Working for now
 $my = new Youtube_Recommendation_json('UCFuIUoyHB12qpYa8Jpxoxow');
 $json = $my->from_yt_feed();
 var_dump($json);
