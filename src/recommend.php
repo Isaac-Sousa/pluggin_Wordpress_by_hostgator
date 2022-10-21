@@ -11,7 +11,7 @@
  * Description:     Videos recommendations
  * Version:         1.0.0
  * Author:          Isaac de Sousa
- * Author URI:      link
+ * Author URI:      https://br.linkedin.com/in/isaac-de-sousa-2b0438252?trk=people-guest_people_search-card
  * License:         indicação/informação
  * License URI:     link
  * Text Domain:     Isso ai mesmo
