@@ -18,43 +18,6 @@ class youtube_recommendation_json {
 			add_action("wp_ajax_$ajax_action", array($this, 'write_content'));
 			add_action("wp_ajax_nopriv_$ajax_action", array($this, 'write_content'));
 		}
-		public function write_content(){
-			echo $this->get_content();
-			$this->save_file();
-			wp_die();
-		}
-		public function get_content(){
-//			if($this->is_expired()){
-				echo 'Pegou da net';
-				$json_content = $this->from_yt_feed();
-				$this->save_file($json_content);
-//			}else{
-//				'pegou dos arquivos';
-//				$json_content = $this->from_file();
-//			}
-			return $json_content;
-		}
-		private function is_expired(){
-			$file_expiration_in_hours = $this->expiration;
-			$json_file = $this->get_filename_full_path();
-			$json_file_expired = (time()-filemtime($json_file)>($file_expiration_in_hours * 3600));
-			return $json_file_expired;
-
-		}
-		private function save_file($json_content){
-            $json_path = $this->get_filename_full_path();
-			$fp = fopen($json_path, 'w');
-			fwrite($fp,$json_content);
-			fclose($fp);
-		}
-		private function from_file(){
-			$json_path = $this->get_filename_full_path();
-			$json = file_get_contents($json_path);
-			return $json;
-		}
-		private function get_filename_full_path(){
-			return $this->path .'/'. $this->filename;
-		}
 		private function create_folder_path(){
 			$upload_dir = wp_upload_dir();
 			if(! empty($upload_dir['basedir'])){
@@ -64,8 +27,55 @@ class youtube_recommendation_json {
 					 return $dirname;
 				 }
 			}
+		}
+		public function write_content(){
+			echo $this->get_content();
+			wp_die();
+		}
+		public function get_content() {
+		if($this->is_expired()) {
+			echo 'Veio da net';
+			$json_content=$this->from_yt_feed();
+			$this->save_file($json_content);
+		}
+        else{
+			echo 'Nem deu certo kkkk';
+			$json_content = $this->from_file();
+		}
+			return $json_content;
 
 		}
+		private function is_expired(){
+			$file_expiration_in_hours = $this->expiration;
+			$json_file = $this->get_filename_full_path();
+			$json_file_expired = (time()-filemtime($json_file) > $file_expiration_in_hours * 3600);
+			if($json_file_expired!= null ){
+			return ($json_file_expired);}
+			else{
+			return 'Não tá criando o arquivo';
+			}
+		}
+		private function from_file(){
+			$json_path = $this->get_filename_full_path();
+			$json = file_get_contents($json_path);
+			return $json;
+		}
+		private function save_file( $json_content ){
+         $json_path = $this->get_filename_full_path();
+		 $fp = fopen( $json_path, 'w' );
+		 fwrite( $fp, $json_content );
+		 fclose( $fp );
+
+		}
+		// função auxiliar
+		private function get_filename_full_path(){
+			return $this->path. '/' . $this->filename;
+		}
+
+
+
+
+
 		private function from_yt_feed() {
 			//canal
 			$channel_id = $this->channel_id;
