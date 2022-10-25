@@ -60,9 +60,12 @@ require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation.php';
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_json.php';
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_shortcode.php';
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_widget.php';
+if(is_admin())
+require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_admin.php';
+
+$recommendation = new youtube_recommendation();
 
 if(is_admin()){
-	require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_admin.php';
 	$youtube_recommendation_admin= new Youtube_Recommendation_Admin(
 		RECOMMEND_BASENAME,
 		RECOMMEND_PLUGIN_SLUG,
@@ -70,7 +73,6 @@ if(is_admin()){
 		RECOMMEND_VERSION
 	);
 }
-
 
 
 

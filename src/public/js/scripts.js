@@ -11,20 +11,22 @@ const YoutubeRecommendation = {
             data: postData,
             dataType: 'json'
         })
-     return await request.done();
+        return await request.done();
     },
 
-    buildList(jsonData, containerId, layout = "grid",  limit = 15, lang= "en_US"){
+    buildList(jsonData, containerId, layout = 'grid',  limit = 15, lang= "en_US"){
         const myData = jsonData;
-        let theList = document.createElement("div");
 
-        theList.className = layout = "list" ? "yt-rec-list" : "yt-rec";
+        let theList = document.createElement('div');
+
+        theList.className = (layout == 'list') ? "yt-rec-list" : "yt-rec";
         // pode ser também, mas no caso a cima é levado em conta que o layout pode ser grid ou lista
         // theList.className = 'yt-rec';
 
         let videos = {};
-        if (limit != null) videos = myData.videos.slice(0, limit)
-        for(let i = 0; i < videos.lenght; i++){
+        videos = myData.videos.slice(0, limit);
+
+        for(let i = 0; i < videos.length; i++){
             theList.appendChild(
                 YoutubeRecommendation.buildListItem(
                     videos[i],
@@ -38,9 +40,11 @@ const YoutubeRecommendation = {
         container.innerHTML = "";
         container.appendChild(theList);
     },
+
+
     buildListItem(item,channel,lang){
-        const theItem = document.createElement("div");
-        theItem.className ="yt-rec-item";
+        const theItem = document.createElement('div');
+        theItem.className ="yt_rec_item";
         let viewsText = {
             pt_BR: 'visualizaões',
             en_US: 'views',
@@ -52,21 +56,7 @@ const YoutubeRecommendation = {
            <img class="yt-rec-thumbnail" src="${item.thumbnail}">
            </a>
         </div>  
-        <div class="my-yt-rec-meta"><img src="${channel.avatar}" class="my-yt-rec-avatar">
-                <div class="my-yt-rec-meta-data">
-                  <h3 class = "my-yt-rec-title">
-                    <a href="${item.link}" target="_blank" title="${item.title}">
-                        ${item.title}
-                    </a>
-                  </h3>
-                    <div class="my-yt-rec-meta-block">
-                        <div class="my-yt-rec-channel">${channel.name}</div>
-                        <div class="my-yt-rec-meta-line">
-                            <span>${item.views} ${viewsText[lang]} • ${this.timeAgo(item.published, lang)}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+    `;
         return theItem;
 
     },
@@ -110,7 +100,7 @@ const YoutubeRecommendation = {
         };
         const result = langs[lang];
         return result[time];
-      },
+    },
 
     timeAgo(date, lang) {
         date = typeof date === "object" ? date : new Date(date);
