@@ -73,6 +73,9 @@ if($channel_id != ""){
 		RECOMMEND_PLUGIN_SLUG,
 		RECOMMEND_JSON_FILENAME
 	);
+
+	$yt_rec_shortcode = new youtube_recommendation_shortcode();
+
 }
 
 if(is_admin()){
