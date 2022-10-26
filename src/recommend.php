@@ -75,6 +75,7 @@ if($channel_id != ""){
 	);
 
 	$yt_rec_shortcode = new youtube_recommendation_shortcode();
+	$yt_rec_widget = new youtube_recommendation_widget();
 
 }
 
