@@ -34,7 +34,8 @@ class youtube_recommendation_json {
 		}
 		public function get_content() {
 		if($this->is_expired()) {
-			$json_content=$this->from_yt_feed();
+
+			$json_content = $this->from_yt_feed();
 			$this->save_file($json_content);
 		}
         else{
@@ -47,7 +48,7 @@ class youtube_recommendation_json {
 			$file_expiration_in_hours = $this->expiration;
 			$json_file = $this->get_filename_full_path();
 			$json_file_expired = (time()-filemtime($json_file) > $file_expiration_in_hours * 3600);
-			if($json_file_expired!= null ){
+			if($json_file_expired != null ){
 			return ($json_file_expired);}
 			else{
 			return 'Não tá criando o arquivo';
@@ -56,18 +57,19 @@ class youtube_recommendation_json {
 		private function from_file(){
 			$json_path = $this->get_filename_full_path();
 			$json = file_get_contents($json_path);
-			return $json;
+			return $json_path;
 		}
 		private function save_file( $json_content ){
-         $json_path = $this->get_filename_full_path();
+         $json_path = $this->dirname . '/' . $this->filename;
 		 $fp = fopen( $json_path, 'w' );
 		 fwrite( $fp, $json_content );
 		 fclose( $fp );
-
+         return $json_path;
 		}
 		// função auxiliar
 		private function get_filename_full_path(){
-			return $this->path. '/' . $this->filename;
+			return $this->path . '/' . $this->filename;
+
 		}
 
 

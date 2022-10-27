@@ -8,7 +8,7 @@ class youtube_recommendation_widget extends WP_Widget {
 			__('Youtube Recommendation', 'recommend'),
 			array('customize_selective_refresh' => true)
 		);
-		add_action ('widgets_init', array($this, 'init'));
+		add_action('widgets_init', array($this, 'init'));
 	}
     public function init(){
         register_widget('youtube_recommendation_widget');

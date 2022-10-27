@@ -27,7 +27,7 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 		public function add_plugin_page() {
 			add_options_page(
 			  __('Settings','recommend'),
-			  __('Youtube Recommendation','recommend'),
+			  __('My Recommendation','recommend'),
 			  'manage_options',
 			  $this->plugin_slug,
 			  array ($this, 'create_admin_page')

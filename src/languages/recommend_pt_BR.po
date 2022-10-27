@@ -1,0 +1,141 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-10-27 14:56-0300\n"
+"PO-Revision-Date: 2022-10-27 14:58-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/youtube_recommendation_admin.php:29
+#: includes/youtube_recommendation_admin.php:41
+msgid "Settings"
+msgstr "Configurações"
+
+#: includes/youtube_recommendation_admin.php:30
+msgid "My Recommendation"
+msgstr "Minha recomendação"
+
+#: includes/youtube_recommendation_admin.php:50
+msgid "Recommendation"
+msgstr "Recomendação"
+
+#: includes/youtube_recommendation_admin.php:74
+msgid "General Settings"
+msgstr "Configurações Gerais"
+
+#: includes/youtube_recommendation_admin.php:80
+msgid "Channel_id"
+msgstr "Id do canal"
+
+#: includes/youtube_recommendation_admin.php:87
+msgid "Cache Expiration"
+msgstr "Expiração do cache"
+
+#: includes/youtube_recommendation_admin.php:94
+msgid "Post Settings"
+msgstr "Configurações de Postagem"
+
+#: includes/youtube_recommendation_admin.php:100
+msgid "Show in Posts"
+msgstr "Mostrar nos Posts"
+
+#: includes/youtube_recommendation_admin.php:107
+#: includes/youtube_recommendation_widget.php:31
+msgid "Layout"
+msgstr "Esquema"
+
+#: includes/youtube_recommendation_admin.php:114
+msgid "Videos in list"
+msgstr "Vídeos em lista"
+
+#: includes/youtube_recommendation_admin.php:121
+msgid "Customize Style"
+msgstr "Estilize seu Css"
+
+#: includes/youtube_recommendation_admin.php:127
+msgid "Your CSS"
+msgstr "Seu CSS"
+
+#: includes/youtube_recommendation_admin.php:141
+msgid "sample"
+msgstr "exemplo"
+
+#: includes/youtube_recommendation_admin.php:142
+msgid "Find here your channel Id"
+msgstr "Encontre aqui seu id do canal"
+
+#: includes/youtube_recommendation_admin.php:151
+msgid "hours is the expiration time for cached data"
+msgstr "o tempo de expiração dos dados armazenados em cache é em horas"
+
+#: includes/youtube_recommendation_admin.php:152
+msgid "Test here"
+msgstr "Teste aqui"
+
+#: includes/youtube_recommendation_admin.php:159
+msgid "On posts show videos in position:"
+msgstr "Posições dos vídeos nos posts:"
+
+#: includes/youtube_recommendation_admin.php:160
+msgid "Disable"
+msgstr "Desabilitar"
+
+#: includes/youtube_recommendation_admin.php:161
+msgid "After"
+msgstr "Depois"
+
+#: includes/youtube_recommendation_admin.php:162
+msgid "Before"
+msgstr "Antes"
+
+#: includes/youtube_recommendation_admin.php:171
+#: includes/youtube_recommendation_widget.php:33
+msgid "Grid"
+msgstr "Grade"
+
+#: includes/youtube_recommendation_admin.php:172
+#: includes/youtube_recommendation_widget.php:34
+msgid "List"
+msgstr "Lista"
+
+#: includes/youtube_recommendation_admin.php:181
+msgid "Max"
+msgstr "Máximo"
+
+#: includes/youtube_recommendation_admin.php:232
+msgid "Plugin Version"
+msgstr "Versão do Plugin"
+
+#: includes/youtube_recommendation_admin.php:246
+#: includes/youtube_recommendation_widget.php:8
+msgid "Youtube Recommendation"
+msgstr "Recomendação do Youtube"
+
+#: includes/youtube_recommendation_admin.php:247
+msgid "Fill with your Youtube channel ID"
+msgstr "Preencha com seu ID do canal do Youtube"
+
+#: includes/youtube_recommendation_widget.php:18
+msgid "Last Videos"
+msgstr "Últimos vídeos"
+
+#: includes/youtube_recommendation_widget.php:25
+msgid "Title"
+msgstr "Título"
+
+#: includes/youtube_recommendation_widget.php:39
+msgid "Videos to show"
+msgstr "Vídeos à amostra"
+
+#: includes/youtube_recommendation_widget.php:67
+msgid "Loading..."
+msgstr "Carregando…"

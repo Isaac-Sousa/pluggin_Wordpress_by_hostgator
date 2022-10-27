@@ -8,14 +8,14 @@
  * @wordpress-plugin
  * Plugin Name:     Recommendation
  * Plugin URI:      link
- * Description:     Videos recommendations
+ * Description:     Vou te recomendar uns videos bacanas!
  * Version:         1.0.0
  * Author:          Isaac de Sousa
  * Author URI:      https://br.linkedin.com/in/isaac-de-sousa-2b0438252?trk=people-guest_people_search-card
  * License:         indicação/informação
  * License URI:     link
- * Text Domain:     Isso ai mesmo
- * Domain Path:     link
+ * Text Domain:     recommend
+ * Domain Path:     /languages/
  */
 if ( ! defined( 'WPINC' ) ) {
 	wp_die();
@@ -29,7 +29,7 @@ if ( ! defined( 'RECOMMEND_VERSION') ) { //NOME DA CONSTANTE COM O NOME DO PLUGI
 //Plugin Name
 
 if ( ! defined( 'RECOMMEND_NAME') ) {
-	define( 'RECOMMEND_NAME','recommend');
+	define( 'RECOMMEND_NAME','My recommend');
 }
 
 //Plugin Slug
@@ -55,6 +55,15 @@ if(! defined('RECOMMEND_PLUGIN_DIR')){
 if(! defined('RECOMMEND_JSON_FILENAME')){
 	define('RECOMMEND_JSON_FILENAME','yt_rec.json');
 }
+load_plugin_textdomain(
+	RECOMMEND_PLUGIN_SLUG, false, RECOMMEND_PLUGIN_SLUG.'/languages/'
+);
+
+
+
+
+
+
 
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation.php';
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_json.php';
@@ -67,12 +76,7 @@ $recommendation = new youtube_recommendation();
 $channel_id = $recommendation->options['channel_id'];
 if($channel_id != ""){
 	$expiration = $recommendation->options['cache_expiration'];
-	$recommendation_json = new youtube_recommendation_json(
-		$channel_id,
-		$expiration,
-		RECOMMEND_PLUGIN_SLUG,
-		RECOMMEND_JSON_FILENAME
-	);
+	$recommendation_json = new youtube_recommendation_json( $channel_id, $expiration, RECOMMEND_PLUGIN_SLUG, RECOMMEND_JSON_FILENAME );
 
 	$yt_rec_shortcode = new youtube_recommendation_shortcode();
 	$yt_rec_widget = new youtube_recommendation_widget();
@@ -91,10 +95,3 @@ if(is_admin()){
 
 
 
-
-
-    // mensagem pra verificar se está funcionadp
-add_filter('the_content', 'thanks');
-function thanks ($content){
-	return $content.'Ta dando certo, yupiii';
-}
