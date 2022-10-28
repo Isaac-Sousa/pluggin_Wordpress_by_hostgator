@@ -1,6 +1,7 @@
 <?php
 if ( ! class_exists( 'youtube_recommendation_json' ) ) {
 class youtube_recommendation_json {
+
 		private $channel_id;
 		private $expiration;
 		private $filename;
@@ -10,8 +11,8 @@ class youtube_recommendation_json {
 		public function __construct( $channel_id, $expiration = 1, $dirname, $filename) {
 			$this->channel_id = $channel_id;
 			$this->expiration = $expiration;
+            $this->dirname    = $dirname;
 			$this->filename   = $filename;
-			$this->dirname    = $dirname;
 			$this->path       = $this->create_folder_path(); //path se encontra vazio, mas a pasta é criada!?
 
 			$ajax_action = 'yt_recommendations_videos';
@@ -24,8 +25,8 @@ class youtube_recommendation_json {
 				 $dirname = $upload_dir['basedir'].'/'.$this->dirname;
 				 if( ! file_exists($dirname)){
 					 wp_mkdir_p($dirname);
-					 return $dirname;
 				 }
+                return $dirname;
 			}
 		}
 		public function write_content(){
@@ -34,7 +35,7 @@ class youtube_recommendation_json {
 		}
 		public function get_content() {
 		if($this->is_expired()) {
-
+            echo 'net';
 			$json_content = $this->from_yt_feed();
 			$this->save_file($json_content);
 		}
@@ -55,7 +56,7 @@ class youtube_recommendation_json {
 		private function from_file(){
 			$json_path = $this->get_filename_full_path();
 			$json = file_get_contents($json_path);
-			return $json_path;
+			return $json;
 		}
 		private function save_file( $json_content ){
          $json_path = $this->path . '/' . $this->filename;
