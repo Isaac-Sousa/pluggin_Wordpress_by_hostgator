@@ -35,7 +35,6 @@ class youtube_recommendation_json {
 		}
 		public function get_content() {
 		if($this->is_expired()) {
-            echo 'net';
 			$json_content = $this->from_yt_feed();
 			$this->save_file($json_content);
 		}
