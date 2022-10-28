@@ -46,7 +46,7 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 
 		public function show_notices() {
 			$value = isset( $this->options['channel_id'] ) ? esc_attr( $this->options['channel_id'] ) : '';
-			if ($value == ''){
+			if ($value == '' || $value == null){
 				?>
                 <div class="error notice">
 					<?php echo $channel_id ?>
@@ -191,12 +191,12 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 		}
 	    public function cache_expiration_callback(){
 		    $upload_dir=wp_upload_dir();
-		    $jason_url= $upload_dir['baseurl'] .'/'.$this->plugin_slug.'/'.$this->json_filename;
+		    $json_url= $upload_dir['baseurl'] . '/' . $this->plugin_slug . '/' . $this->json_filename;
             $value = isset($this->options['cache_expiration']) ? esc_attr($this->options['cache_expiration']): '1';
 		    ?>
 		    <input type="number" id="cache_expiration" min="1" name="yt_rec['cache_expiration']" value="<?php echo $value ?>" class="small_text" />
               <?php echo __('hours is the expiration time for cached data','recommend'); ?>
-              <p class="description"<a href="<?php echo $jason_url ?>" target="_blank"><?php echo __('Test here', 'recommend'); ?></a>
+              <p class="description"<a href="<?php echo $json_url?>" target="_blank"><?php echo __('Test here', 'recommend'); ?></a>
             <?php
 	   }
 		public function show_position_callback() {
