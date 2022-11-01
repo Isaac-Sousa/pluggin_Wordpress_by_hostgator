@@ -72,15 +72,14 @@ require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_widget.php'
 if(is_admin())
 require_once RECOMMEND_PLUGIN_DIR . 'includes/youtube_recommendation_admin.php';
 
-$recommendation = new youtube_recommendation();
-$channel_id = $recommendation->options['channel_id'];
+$reco = new youtube_recommendation();
+$channel_id = $reco->options['channel_id'];
 if($channel_id != ""){
-	$expiration = $recommendation->options['cache_expiration'];
-	$recommendation_json = new youtube_recommendation_json( $channel_id, $expiration, RECOMMEND_PLUGIN_SLUG, RECOMMEND_JSON_FILENAME );
+	$expiration = $reco->options['cache_expiration'];
+	$reco_json = new youtube_recommendation_json( $channel_id, $expiration, RECOMMEND_PLUGIN_SLUG, RECOMMEND_JSON_FILENAME );
 
-	$yt_rec_shortcode = new youtube_recommendation_shortcode();
-	$yt_rec_widget = new youtube_recommendation_widget();
-
+//	$yt_rec_shortcode = new youtube_recommendation_shortcode();
+//	$yt_rec_widget = new youtube_recommendation_widget();
 }
 
 if(is_admin()){

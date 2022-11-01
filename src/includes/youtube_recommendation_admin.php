@@ -19,6 +19,7 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 	   add_action('admin_init', array ($this, 'page_init'));
 	   add_action('admin_footer_text', array ($this, 'page_footer'));
 	   add_action('admin_notices', array ($this, 'show_notices'));
+
 	   add_filter( "plugin_action_links_" . $this->plugin_basename, array( $this, 'add_settings_link' ) );
     }
 
@@ -43,7 +44,20 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 			return $links;
 		}
 
-		//criar pagina do addministrador
+		public function show_notices() {
+			$value = isset( $this->options['channel_id'] ) ? esc_attr( $this->options['channel_id'] ) : '';
+			if ($value == '' || $value == null){
+				?>
+                <div class="error notice">
+					<?php echo $channel_id ?>
+                    <p><strong><?php echo __( 'Youtube Recommendation', 'recommend' ); ?></strong></p>
+                    <p><?php echo __( 'Fill with your Youtube channel ID', 'recommend' ); ?></p>
+                </div>
+				<?php
+			}
+		}
+
+		//criar pagina do administrador
 		public function create_admin_page(){
 		?>
          <div class="wrap">
@@ -132,6 +146,39 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 		}
 
 
+        //page footer
+		public function page_footer(){
+			return __('Plugin Version','recommend') .' '.  $this->plugin_version;
+		}
+
+
+
+
+        //Sanitize
+		public function sanitize($input) {
+			$new_input = array();
+			if(isset($input['channel_id'] ) )
+				$new_input['channel_id'] = sanitize_text_field($input['channel_id']);
+
+			if(isset($input['cache_expiration'] ) )
+				$new_input['cache_expiration'] = absint($input['cache_expiration']);
+
+			if(isset($input['show_position'] ) )
+				$new_input['show_position'] = sanitize_text_field($input['show_position']);
+
+			if(isset($input['layout'] ) )
+				$new_input['layout'] = sanitize_text_field($input['layout']);
+
+			if(isset($input['limit'] ) )
+				$new_input['limit'] = absint($input['limit']);
+
+			if(isset($input['custom_css'] ) )
+				$new_input['custom_css'] = sanitize_text_field($input['custom_css']);
+
+			return $new_input;
+
+		}
+
 //		  Callbacks
 
 		public function channel_id_callback(){
@@ -144,12 +191,12 @@ if (! class_exists('Youtube_Recommendation_Admin')){
 		}
 	    public function cache_expiration_callback(){
 		    $upload_dir=wp_upload_dir();
-		    $jason_url= $upload_dir['baseurl'] .'/'.$this->plugin_slug.'/'.$this->json_filename;
+		    $json_url= $upload_dir['baseurl'] . '/' . $this->plugin_slug . '/' . $this->json_filename;
             $value = isset($this->options['cache_expiration']) ? esc_attr($this->options['cache_expiration']): '1';
 		    ?>
 		    <input type="number" id="cache_expiration" min="1" name="yt_rec['cache_expiration']" value="<?php echo $value ?>" class="small_text" />
               <?php echo __('hours is the expiration time for cached data','recommend'); ?>
-              <p class="description"<a href="<?php echo $jason_url ?>" target="_blank"><?php echo __('Test here', 'recommend'); ?></a>
+              <p class="description"<a href="<?php echo $json_url?>" target="_blank"><?php echo __('Test here', 'recommend'); ?></a>
             <?php
 	   }
 		public function show_position_callback() {
@@ -188,73 +235,6 @@ if (! class_exists('Youtube_Recommendation_Admin')){
             <textarea id="custom_css" name="my_yt_rec[custom_css]" rows="10" cols="50" class="large-text code"><?php echo $value ?></textarea>
 			<?php
 		}
-
-
-
-        /*
-         * Callbacks ends
-         *
-         *
-         * sanitize starts
-         */
-        public function sanitize($input) {
-            $new_input = array();
-            if(isset($input['channel_id'] ) )
-               $new_input['channel_id'] = sanitize_text_field($input['channel_id']);
-
-	        if(isset($input['cache_expiration'] ) )
-		        $new_input['cache_expiration'] = absint($input['cache_expiration']);
-
-	        if(isset($input['show_position'] ) )
-		        $new_input['show_position'] = sanitize_text_field($input['show_position']);
-
-	        if(isset($input['layout'] ) )
-		        $new_input['layout'] = sanitize_text_field($input['layout']);
-
-	        if(isset($input['limit'] ) )
-		        $new_input['limit'] = absint($input['limit']);
-
-	        if(isset($input['custom_css'] ) )
-		        $new_input['custom_css'] = sanitize_text_field($input['custom_css']);
-
-            return $new_input;
-
-        }
-
-       /*
-        *  Sanitize ends
-        *
-        *
-        * page footer starts
-        */
-
-        public function page_footer(){
-          return __('Plugin Version','recommend') .' '.  $this->plugin_version;
-        }
-
-        /* page footer ends
-         *
-         * show notice starts
-         */
-
-		public function show_notices() {
-			$value = isset( $this->options['channel_id'] ) ? esc_attr( $this->options['channel_id'] ) : '';
-			if ($value == ''){
-				?>
-                <div class="error notice">
-					<?php echo $channel_id ?>
-                    <p><strong><?php echo __( 'Youtube Recommendation', 'recommend' ); ?></strong></p>
-                    <p><?php echo __( 'Fill with your Youtube channel ID', 'recommend' ); ?></p>
-                </div>
-				<?php
-			}
-		}
-
-
-
-
-
-
 
 
 	} //construct

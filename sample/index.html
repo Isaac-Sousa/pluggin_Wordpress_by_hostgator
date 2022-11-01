@@ -20,12 +20,14 @@
 <div class="container" id="videos">Não funciona</div>
 <div class="container" id="widget">Not working</div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
-<script src="js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" ></script>
 <script>
     let yt_rec_ajax = {
         url: "http://localhost:5500/sample/videos.json",
     };
+</script>
+    <script src="js/scripts.js"></script>
+<script>
     YoutubeRecommendation.listCallbacks.push({
         containerId: "videos",
         layout: "list",

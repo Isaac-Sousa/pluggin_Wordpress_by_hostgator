@@ -1,6 +1,7 @@
 <?php
 if ( ! class_exists( 'youtube_recommendation_json' ) ) {
 class youtube_recommendation_json {
+
 		private $channel_id;
 		private $expiration;
 		private $filename;
@@ -10,9 +11,9 @@ class youtube_recommendation_json {
 		public function __construct( $channel_id, $expiration = 1, $dirname, $filename) {
 			$this->channel_id = $channel_id;
 			$this->expiration = $expiration;
+            $this->dirname    = $dirname;
 			$this->filename   = $filename;
-			$this->dirname    = $dirname;
-			$this->path       = $this->create_folder_path();
+			$this->path       = $this->create_folder_path(); //path se encontra vazio, mas a pasta é criada!?
 
 			$ajax_action = 'yt_recommendations_videos';
 			add_action("wp_ajax_$ajax_action", array($this, 'write_content'));
@@ -24,8 +25,8 @@ class youtube_recommendation_json {
 				 $dirname = $upload_dir['basedir'].'/'.$this->dirname;
 				 if( ! file_exists($dirname)){
 					 wp_mkdir_p($dirname);
-					 return $dirname;
 				 }
+                return $dirname;
 			}
 		}
 		public function write_content(){
@@ -34,7 +35,6 @@ class youtube_recommendation_json {
 		}
 		public function get_content() {
 		if($this->is_expired()) {
-
 			$json_content = $this->from_yt_feed();
 			$this->save_file($json_content);
 		}
@@ -46,21 +46,19 @@ class youtube_recommendation_json {
 		}
 		private function is_expired(){
 			$file_expiration_in_hours = $this->expiration;
+
 			$json_file = $this->get_filename_full_path();
 			$json_file_expired = (time()-filemtime($json_file) > $file_expiration_in_hours * 3600);
-			if($json_file_expired != null ){
-			return ($json_file_expired);}
-			else{
-			return 'Não tá criando o arquivo';
+
+			return ($json_file_expired);
 			}
-		}
 		private function from_file(){
 			$json_path = $this->get_filename_full_path();
 			$json = file_get_contents($json_path);
-			return $json_path;
+			return $json;
 		}
 		private function save_file( $json_content ){
-         $json_path = $this->dirname . '/' . $this->filename;
+         $json_path = $this->path . '/' . $this->filename;
 		 $fp = fopen( $json_path, 'w' );
 		 fwrite( $fp, $json_content );
 		 fclose( $fp );

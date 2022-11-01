@@ -5,12 +5,12 @@ const YoutubeRecommendation = {
         const postData = {
             action: 'my_youtube_recommendations_videos'
         };
-        let request = jQuery.ajax({
+        let request = JQuery.ajax ({
             method: 'GET',
             url: url,
             data: postData,
             dataType: 'json'
-        })
+        });
      return await request.done();
     },
 
